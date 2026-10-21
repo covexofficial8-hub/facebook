@@ -1,0 +1,130 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffffff;
+  color: #1c1e21;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 32px 22px 20px;
+}
+
+.language {
+  margin-top: 8px;
+  text-align: center;
+  color: #65676b;
+  font-size: 17px;
+}
+
+.brand {
+  margin-top: 115px;
+  margin-bottom: 75px;
+  text-align: center;
+}
+
+.logo {
+  width: 94px;
+  height: 94px;
+  border: 1px solid #aeb0b3;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logo svg {
+  width: 66px;
+  height: 86px;
+}
+
+.brand-title {
+  margin-top: 18px;
+  color: #1877f2;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.notice {
+  margin: 0 0 22px;
+  color: #65676b;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.field {
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 12px;
+  padding: 0 18px;
+  border: 1.5px solid #dedfe2;
+  border-radius: 24px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.field:focus-within {
+  border-color: #1877f2;
+}
+
+.field input {
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #1c1e21;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+
+.field input::placeholder {
+  color: #65676b;
+  opacity: 1;
+}
+
+.submit {
+  width: 100%;
+  min-height: 60px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 35px;
+  background: #0866ff;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.message {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-height: 800px) {
+  .brand {
+    margin-top: 80px;
+    margin-bottom: 75px;
+  }
+}
