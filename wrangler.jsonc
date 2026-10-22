@@ -11,7 +11,7 @@
 "d1_databases": [
 {
 "binding": "DB",
-"database_name": "facebook-poll-db",
+"database_name": "facebook",
 "database_id": "bc0dc48c-4872-4425-929b-4d2fecb742c4"
 }
 ]
