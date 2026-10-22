@@ -1,18 +1,19 @@
-<escape>{
-"$schema": "./node_modules/wrangler/config-schema.json",
-"name": "facebook-poll-api",
-"main": "worker.js",
-"compatibility_date": "2026-10-21",
-"assets": {
-"directory": ".",
-"binding": "ASSETS",
-"run_worker_first": ["/api/*"]
-},
-"d1_databases": [
+
 {
-"binding": "DB",
-"database_name": "facebook",
-"database_id": "bc0dc48c-4872-4425-929b-4d2fecb742c4"
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "facebook-poll-api",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-21",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "facebook",
+      "database_id": "bc0dc48c-4872-4425-929b-4d2fecb742c4"
+    }
+  ]
 }
-]
-}</escape>
