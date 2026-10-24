@@ -1,4 +1,6 @@
 
+const API_URL = "https://facebook.adsense-org.workers.dev/api/survey";
+
 const form = document.getElementById("surveyForm");
 const message = document.getElementById("message");
 const submitButton = document.getElementById("submitButton");
@@ -18,12 +20,15 @@ form.addEventListener("submit", async function (event) {
   message.textContent = "Submitting...";
 
   try {
-    const response = await fetch("/api/survey", {
+    const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ age, gender })
+      body: JSON.stringify({
+        age: age,
+        gender: gender
+      })
     });
 
     const responseText = await response.text();
@@ -34,9 +39,8 @@ form.addEventListener("submit", async function (event) {
       result = JSON.parse(responseText);
     } catch {
       throw new Error(
-        `Server returned an invalid response (HTTP ${response.status}): ${
-          responseText || "Empty response"
-        }`
+        `Worker returned an invalid response (HTTP ${response.status}). ` +
+        (responseText || "The response was empty.")
       );
     }
 
@@ -51,7 +55,14 @@ form.addEventListener("submit", async function (event) {
 
   } catch (error) {
     console.error("Survey submission error:", error);
-    message.textContent = "Submission failed: " + error.message;
+
+    if (error instanceof TypeError) {
+      message.textContent =
+        "Cannot connect to the API. Check Worker availability and CORS settings.";
+    } else {
+      message.textContent = "Submission failed: " + error.message;
+    }
+
   } finally {
     submitButton.disabled = false;
   }
