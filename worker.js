@@ -25,20 +25,14 @@ export default {
 
     const url = new URL(request.url);
 
-    if (
-      request.method === "GET" &&
-      url.pathname === "/api/health"
-    ) {
+    if (request.method === "GET" && url.pathname === "/api/health") {
       return json({
         success: true,
         service: "Facebook Poll API"
       });
     }
 
-    if (
-      request.method !== "POST" ||
-      url.pathname !== "/api/survey"
-    ) {
+    if (request.method !== "POST" || url.pathname !== "/api/survey") {
       return json({
         success: false,
         error: "Endpoint not found"
@@ -59,24 +53,17 @@ export default {
     } catch {
       return json({
         success: false,
-        error: "Invalid JSON"
+        error: "Invalid JSON request"
       }, 400);
     }
 
     const age = String(body.age ?? "").trim();
     const gender = String(body.gender ?? "").trim();
 
-    if (!age) {
+    if (!age || !gender) {
       return json({
         success: false,
-        error: "Age or year is required"
-      }, 400);
-    }
-
-    if (!gender) {
-      return json({
-        success: false,
-        error: "Gender is required"
+        error: "Both age/year and gender are required"
       }, 400);
     }
 
