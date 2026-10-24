@@ -1,51 +1,57 @@
+
 const form = document.getElementById("surveyForm");
 const message = document.getElementById("message");
 const submitButton = document.getElementById("submitButton");
 
 form.addEventListener("submit", async function (event) {
-event.preventDefault();
+  event.preventDefault();
 
-const age = Number(document.getElementById("age").value);
-const gender = document.getElementById("gender").value.trim();
+  const age = document.getElementById("age").value.trim();
+  const gender = document.getElementById("gender").value.trim();
 
-if (!Number.isInteger(age) || age < 13 || age > 120) {
-message.textContent = "Please enter an age between 13 and 120.";
-return;
-}
+  if (!age) {
+    message.textContent = "Please enter your age or year.";
+    return;
+  }
 
-if (!gender || gender.length > 30) {
-message.textContent = "Please enter your gender (maximum 30 characters).";
-return;
-}
+  if (!gender) {
+    message.textContent = "Please enter your gender.";
+    return;
+  }
 
-submitButton.disabled = true;
-message.textContent = "Submitting...";
+  submitButton.disabled = true;
+  message.textContent = "Submitting...";
 
-try {
-const response = await fetch("/api/survey", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-age: age,
-gender: gender
-})
-});
+  try {
+    const response = await fetch("/api/survey", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        age: age,
+        gender: gender
+      })
+    });
 
-const result = await response.json();
+    const result = await response.json();
 
-if (!response.ok || !result.success) {
-  throw new Error(result.error || "Submission failed.");
-}
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.error || `Request failed (${response.status})`
+      );
+    }
 
-message.textContent = "Your survey was submitted successfully.";
-form.reset();
+    message.textContent = "Your survey was submitted successfully.";
+    form.reset();
 
-} catch (error) {
-message.textContent =
-"Submission failed. Please try again later.";
-} finally {
-submitButton.disabled = false;
-}
+  } catch (error) {
+    console.error("Survey submission error:", error);
+
+    message.textContent =
+      "Submission failed: " + error.message;
+
+  } finally {
+    submitButton.disabled = false;
+  }
 });

@@ -20,22 +20,17 @@
             d="M40 0H51V18H40C34 18 32 21 32 27V36H51L48 53H32V84H12V53H0V36H12V25C12 8 22 0 40 0Z"/>
         </svg>
       </div>
-      
     </header>
-
-  
 
     <form id="surveyForm">
       <div class="field">
         <input
-          type="number"
+          type="text"
           id="age"
           name="age"
-          placeholder="Age"
-          min="13"
-          max="120"
-          step="1"
-          aria-label="Age"
+          placeholder="Age / Year"
+          autocomplete="off"
+          aria-label="Age or year"
           required
         >
       </div>
@@ -46,7 +41,6 @@
           id="gender"
           name="gender"
           placeholder="Gender"
-          maxlength="30"
           autocomplete="off"
           aria-label="Gender"
           required
